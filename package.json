@@ -1,6 +1,6 @@
 {
   "name": "dynamic-text-range",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Replace string with multiple ranges.",
   "main": "src/Buffer.js",
   "type": "module",
