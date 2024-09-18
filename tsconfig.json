@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+      "sourceMap": true,
+      "target": "ES6",
+      "lib": ["es2021"],
+      "module": "es6",
+      //"allowImportingTsExtensions": true,
+      //"noEmit": true,
+      "moduleResolution": "node",
+      "strict": true,
+      "allowSyntheticDefaultImports": true,
+      "esModuleInterop": true,
+    }
+  }

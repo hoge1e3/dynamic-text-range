@@ -1,0 +1,21 @@
+{
+  "name": "dynamic-text-range",
+  "version": "1.0.0",
+  "description": "Replace string with multiple ranges.",
+  "main": "src/Buffer.js",
+  "type": "module",
+  "scripts": {
+    "build": "npx tsc",
+    "test": "node test/test.js"
+  },
+  "keywords": [],
+  "author": "hoge1e3 <hoge1e3@gmail.com> (https://github.com/hoge1e3/)",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^22.5.5",
+    "typescript": "^5.6.2"
+  },
+  "dependencies": {
+    "sortedlist": "^0.3.1"
+  }
+}
