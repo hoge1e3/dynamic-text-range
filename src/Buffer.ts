@@ -21,8 +21,25 @@ export class Buffer {
         this.ranges.insert(r);
         return r;
     }
+    validateRanges() {
+        const r=this.ranges;
+        for (let i=0;i<r.length;i++) {
+            for (let j=i+1;j<r.length;j++) {
+                if (!r[i].valid(r[j])) {
+                    throw new Error(`Invalid ranges: (${r[i].start}...${r[i].end}) and (${r[j].start}...${r[j].end})`);
+                }
+            }
+        } 
+    }
     transaction():Transaction {
         return new Transaction(this);
+    }
+    clone():Buffer{
+        const res=new Buffer(this.text);
+        for (let r of this.ranges) {
+            res.addRange(r.start,r.end);
+        }
+        return res;
     }
 }
 export class Range {
@@ -44,6 +61,19 @@ export class Range {
         const expansion=to.length-this.length();
         this.expand(this.end, expansion);
         this.buffer.text=pre+to+post;
+    }
+    valid(other: Range) {
+        const i=this.intersection(other);
+        return !i||this.equals(i)||other.equals(i);
+    }
+    intersection(other:Range) {
+        if (this.end<=other.start || other.end<=this.start) return null;
+        // this.end>other.start && other.end>this.start
+        const s=Math.max(this.start,other.start), e=Math.min(this.end, other.end);
+        return new Range(this.buffer,s,e);
+    }
+    equals(other:Range){
+        return this.start===other.start && this.end===other.end;
     }
     expand(from:number, by:number) {
         // all range.start/range.end>=from should be +=by  
@@ -68,6 +98,7 @@ export class Range {
         if(c1!=0) return c1;
         return this.start-other.start;
     }
+    
 }
 export class Transaction {
     replaceTo=new Map<Range,string>();
