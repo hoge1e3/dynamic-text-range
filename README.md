@@ -16,5 +16,5 @@ Library for replacing string buffer with multiple ranges. The content string of 
 - toString()
    - returns the content string
 - replace(to:string)
-   - Replace content string of this Range with `to`
+   - Replace content string of this Range with `to`. This also changes the content of belonging Buffer
    - If length of `to` is changed from current content string, the index(start and end) of other Range belonging to same buffer will be adjusted.
